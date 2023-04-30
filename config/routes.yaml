@@ -1,0 +1,26 @@
+#rutas estudiantes
+getStudents:
+  path: /estudiantes
+  controller: App\Controller\EstudiantesController::getStudents
+
+createStudents:
+  path: /estudiante/create
+  controller: App\Controller\EstudiantesController::createStudent
+
+#rutas materias
+getMaterias:
+  path: /materias
+  controller: App\Controller\MateriasController::getMaterias
+
+createMaterias:
+  path: /materia/create
+  controller: App\Controller\MateriasController::createMaterias
+
+#rutas calificaciones
+getCalificaciones:
+  path: /calificaciones
+  controller: App\Controller\EstudiantesController::getCalificaciones
+
+createCalificacion:
+  path: /calificacion/create
+  controller: App\Controller\EstudiantesController::createCalificacion

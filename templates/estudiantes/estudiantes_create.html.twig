@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}<title>Registro de estudiante</title>{% endblock %}
+
+{% block body %}
+<h1 class="sub-header">Lista de estudiantes</h1>
+
+
+{{ form_start(form_students) }}
+
+    {{ form_row(form_students.nombre) }}
+    {{ form_row(form_students.edad) }}
+    {{ form_row(form_students.grado) }}
+    {{ form_widget(form_students.submit) }}
+
+{{ form_end(form_students) }}
+
+{% endblock %}

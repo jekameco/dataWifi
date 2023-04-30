@@ -1,0 +1,60 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}<title>Listado de Calificaciones</title>{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="sub-header">Lista de Calificaciones</h1>
+
+        {{ form_start( form_calificacion,{'attr':{'id':'form_calificacion'}} ) }}
+        <div class="form-group col-lg-4">
+            {{ form_row(form_calificacion.NombreEstudiante) }}
+        </div>
+        <div class="form-group col-lg-4">
+            {{ form_row(form_calificacion.NombreMateria) }}
+        </div>
+        <div class="form-group col-lg-4">
+            {{ form_row(form_calificacion.CalificacionFinal) }}
+        </div>
+        <div class="form-group col-lg-4">
+            {{ form_widget(form_calificacion.submit) }}
+        </div>
+        {{ form_end( form_calificacion ) }}
+    </div>
+    <div class ="info-put  hidden "></div>
+    <h1 class="sub-header">Lista de estudiantes</h1>
+    <div class="table-responsive ">
+
+        <table class="table table-striped">
+                <tr>
+                    <th>Fecha de registro</th>
+                    <th>NombreEstudiante</th>
+                    <th>NombreMateria</th>
+                    <th>CalificacionFinal</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody class="comments">
+                {% for calificacion in listCalificaciones %}
+                <tr>
+                    <td> {{ calificacion.FechaRegistro| date('Y-m-d') }} </td>
+                    <td> {{ calificacion.NombreEstudiante }} </td>
+                    <td> {{ calificacion.NombreMateria }} </td>
+                    <td> {{ calificacion.CalificacionFinal }} </td>
+                    <td> <a href="#" class="btn btn-primary">modificar</a><a href="#"
+                            class="btn btn-danger">Eliminar</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/calificaciones.js') }}"></script>
+
+{% endblock %}

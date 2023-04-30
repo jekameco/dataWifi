@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}<title>Listado de estudiantes</title>{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+    <h1 class="sub-header">Lista de estudiantes</h1>
+
+
+    {{ form_start(form_students, {'attr': {'id': 'form_estudiantes'}}) }}
+    <div class="form-group col-lg-4">
+
+        {{ form_row(form_students.nombre) }}
+    </div>
+    <div class="form-group col-lg-4">
+        {{ form_row(form_students.edad) }}
+    </div>
+    <div class="form-group col-lg-4">
+        {{ form_row(form_students.grado) }}
+    </div>
+    <div class="form-group col-lg-4">
+        {{ form_widget(form_students.submit) }}
+    </div>
+    {{ form_end(form_students) }}
+
+   
+    </div>
+    <div class="info-put  hidden "></div>
+    <h1 class="sub-header">Lista de estudiantes</h1>
+    <div class="table-responsive ">
+
+        <table class="table table-striped">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Grado</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody class="comments">
+                {% for student in listStudents %}
+                <tr>
+                    <td> {{ student.nombre }} </td>
+                    <td> {{ student.edad }} </td>
+                    <td> {{ student.grado }} </td>
+                    <td> <a href="#" class="btn btn-primary">modificar</a><a href="#"
+                            class="btn btn-danger">Eliminar</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/estudiantes.js') }}"></script>
+
+{% endblock %}
