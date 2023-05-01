@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   {% block title %}<title>Welcome!</title>{% endblock %}
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
   <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
   <!-- Bootstrap core CSS -->
   <link href=" {{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,13 +20,6 @@
   <script src="{{ asset('../vendor/twbs/bootstrap/docs/assets/js/ie-emulation-modes-warning.js') }}"></script>
   <!--HIGHCHARTS-->
   <script src="https://code.highcharts.com/highcharts.js"></script>
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-     <![endif]-->
-
 
   {% block stylesheets %} {% endblock %}
 

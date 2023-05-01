@@ -108,6 +108,15 @@ class MateriasController extends AbstractController
     { 
         $id_remove = $request->get('id_delete');
         $listMaterias = $entityManager->getRepository(materias::class)->find($id_remove);
+
+        $qb = $entityManager->createQueryBuilder();
+        $qb->delete('App\Entity\Calificaciones', 'c')
+        ->where('c.nombremateria = :nombremateria')
+        ->setParameter('nombremateria', $listMaterias->getNombremateria())
+        ->getQuery()
+        ->execute();
+
+        //eliminar materias
         $entityManager->remove($listMaterias);
         $entityManager->flush();
         $responseJson['response']  = 'success';

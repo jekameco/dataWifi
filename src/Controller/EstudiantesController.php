@@ -121,11 +121,20 @@ class EstudiantesController extends AbstractController
     { 
         $id_remove = $request->get('id_delete');
         $listStudents = $entityManager->getRepository(Estudiantes::class)->find($id_remove);
+
+        $qb = $entityManager->createQueryBuilder();
+        $qb->delete('App\Entity\Calificaciones', 'c')
+        ->where('c.nombreestudiante = :nombreestudiante')
+        ->setParameter('nombreestudiante', $listStudents->getNombre())
+        ->getQuery()
+        ->execute();
+
+        //elimina estudiante
         $entityManager->remove($listStudents);
         $entityManager->flush();
         $responseJson['response']  = 'success';
         $responseJson['info']  = 'Eliminado correctamente';
-        $responseJson['a']  = $id_remove;
+        
         return new JsonResponse($responseJson);
     }
 }
