@@ -13,6 +13,16 @@ class MateriasType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('id_update',TextType::class,[
+            'mapped' => false,
+            'label' => false,
+            'required' => false,
+                'attr' => [
+                    'placeholder' => 'materia',
+                    'class' => 'id_update hidden',
+
+                ]
+        ])
             ->add('nombremateria',TextType::class,[
                 'label' => 'Nombre de la materia',
                 'attr' => [

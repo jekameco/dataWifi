@@ -55,4 +55,64 @@ class MateriasController extends AbstractController
 
         return new JsonResponse($responseJson);
     }
+
+    
+    /**
+     * @Route("/materia/update", name="app_actualizar_materia")
+     */
+    public function getDataMateria(Request $request, EntityManagerInterface $entityManager)
+    { 
+        
+        $id_update = $request->get('id_update');
+        $listMaterias = $entityManager->getRepository(Materias::class)->find($id_update);
+        $MateriaArray = get_object_vars($listMaterias);
+
+        $responseJson['response']  = 'success';
+        $responseJson['info']  = 'datos correctamente';
+        $responseJson['dataRow']  = array(
+            'nombreMateria' => $listMaterias->getNombremateria(),
+        );
+
+        return new JsonResponse($responseJson);
+    }
+
+    /**
+     * @Route("/materia/update", name="app_actualizar_materia")
+     */
+    public function updateMateria(Request $request, EntityManagerInterface $entityManager)
+    { 
+        
+        $id_update = $request->request->get('materias')['id_update'];
+        $listMaterias = $entityManager->getRepository(materias::class)->find($id_update);
+        
+        $form_Materias = $this->createForm(materiasType::class,$listMaterias);
+        $form_Materias->handleRequest($request);
+        
+        $responseJson = ['response'=>'error','info' => 'Hubo un error','a' => $id_update];
+        
+        if($form_Materias->isSubmitted() && $form_Materias->isValid()){
+            
+            $entityManager->persist($listMaterias);
+            $entityManager->flush();
+            $responseJson['response']  = 'success';
+            $responseJson['info']  = 'Actualizado correctamente';
+        }
+        return new JsonResponse($responseJson);
+
+    }
+
+    /**
+     * @Route("/materia/delete", name="app_eliminar_materia")
+     */
+    public function deleteMateria(Request $request, EntityManagerInterface $entityManager)
+    { 
+        $id_remove = $request->get('id_delete');
+        $listMaterias = $entityManager->getRepository(materias::class)->find($id_remove);
+        $entityManager->remove($listMaterias);
+        $entityManager->flush();
+        $responseJson['response']  = 'success';
+        $responseJson['info']  = 'Eliminado correctamente';
+        $responseJson['a']  = $id_remove;
+        return new JsonResponse($responseJson);
+    }
 }

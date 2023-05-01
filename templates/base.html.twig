@@ -19,6 +19,8 @@
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
   <script src="{{ asset('../vendor/twbs/bootstrap/docs/assets/js/ie-emulation-modes-warning.js') }}"></script>
+  <!--HIGHCHARTS-->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -50,6 +52,8 @@
           <li><a href="{{ path('getStudents') }}">Estudiantes</a></li>
           <li><a href="{{ path('getMaterias') }}">Materias</a></li>
           <li><a href="{{ path('getCalificaciones') }}">Calificaciones finales</a></li>
+          <li><a href="{{ path('getGraficos') }}">Graficas</a></li>
+          <li><a href="{{ path('getDivisa') }}">Divisas</a></li>
         </ul>
       </div>
     </div>

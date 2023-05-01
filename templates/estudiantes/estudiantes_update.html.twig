@@ -10,6 +10,7 @@
 
 
     {{ form_start(form_students, {'attr': {'id': 'form_estudiantes', 'type_form': 'create'}}) }}
+    {{ form_row(form_students.id_update) }}
     <div class="form-group col-lg-4">
 
         {{ form_row(form_students.nombre) }}
@@ -23,6 +24,7 @@
     <div class="form-group col-lg-4">
         {{ form_widget(form_students.submit) }}
     </div>
+    
     {{ form_end(form_students) }}
 
    

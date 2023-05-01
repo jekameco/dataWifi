@@ -137,4 +137,7 @@ body {
   code {
     font-size: 80%;
   }
+  .note-end-bad{
+    background-color: red;
+  }
   

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Estudiantes;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +16,17 @@ class EstudiantesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('id_update',TextType::class,[
+            'mapped' => false,
+            'label' => false,
+            'required' => false,
+                'attr' => [
+                    'placeholder' => 'Edad estudiante',
+                    'class' => 'id_update hidden',
+
+                ]
+        ])
+        
             ->add('nombre',TextType::class,[
                 'label' => 'Nombre',
                 'attr' => [

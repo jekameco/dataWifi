@@ -66,4 +66,80 @@ class CalificacionesController extends AbstractController
         
         return new JsonResponse($responseJson); 
      }
+
+
+     /**
+     * @Route("/calificacion/getData", name="app_actualizar_calificacion")
+     */
+    public function getDataCalificaciones(Request $request, EntityManagerInterface $entityManager)
+    { 
+        
+        $id_update = $request->get('id_update');
+        $listCalificacioness = $entityManager->getRepository(Calificaciones::class)->find($id_update);
+        $CalificacionesArray = get_object_vars($listCalificacioness);
+
+        $responseJson['response']  = 'success';
+        $responseJson['info']  = 'datos correctamente';
+        $responseJson['dataRow']  = array(
+            'FechaRegistro' => $listCalificacioness->getFecharegistro(),
+            'NombreEstudiante' => $listCalificacioness->getNombreestudiante(),
+            'NombreMateria' => $listCalificacioness->getNombremateria(),
+            'CalificacionFinal' => $listCalificacioness->getCalificacionfinal(),
+        );
+
+        return new JsonResponse($responseJson);
+    }
+
+    /**
+     * @Route("/calificacion/update", name="app_actualizar_calificacion")
+     */
+    public function updateCalificaciones(Request $request, EntityManagerInterface $entityManager)
+    { 
+        
+        $id_update = $request->request->get('calificaciones')['id_update'];
+        $listCalificacioness = $entityManager->getRepository(Calificaciones::class)->find($id_update);
+        $data = $request->request->all();
+        $listCalificacioness->setNombreEstudiante($data['calificaciones']['NombreEstudiante']);
+        $listCalificacioness->setNombreMateria($data['calificaciones']['NombreMateria']);
+        $listCalificacioness->setCalificacionFinal($data['calificaciones']['CalificacionFinal']);
+        
+        // Construir la fecha con los valores recibidos
+        $fechaRegistro = new \DateTime();
+        /*$fechaRegistro->setDate(
+            $data['calificaciones']['FechaRegistro']['year'],
+            $data['calificaciones']['FechaRegistro']['month'],
+            $data['calificaciones']['FechaRegistro']['day']
+        );*/
+
+        $responseJson = ['response'=>'error','info' => 'Hubo un error','a' => $id_update];
+        
+        //$form_Calificacioness = $this->createForm(CalificacionesType::class,$listCalificacioness);
+        //$form_Calificacioness->handleRequest($request);
+        
+        
+        //if($form_Calificacioness->isSubmitted() && $form_Calificacioness->isValid()){
+            
+            $entityManager->persist($listCalificacioness);
+            $entityManager->flush();
+            $responseJson['response']  = 'success';
+            $responseJson['info']  = 'Actualizado correctamente';
+            //}
+            
+            return new JsonResponse($responseJson);
+    }
+
+    /**
+     * @Route("/calificacion/delete", name="app_eliminar_calificacion")
+     */
+    public function deleteCalificaciones(Request $request, EntityManagerInterface $entityManager)
+    { 
+        $id_remove = $request->get('id_delete');
+        $listCalificacioness = $entityManager->getRepository(Calificaciones::class)->find($id_remove);
+        $entityManager->remove($listCalificacioness);
+        $entityManager->flush();
+        $responseJson['response']  = 'success';
+        $responseJson['info']  = 'Eliminado correctamente';
+        $responseJson['a']  = $id_remove;
+        return new JsonResponse($responseJson);
+    }
 }
