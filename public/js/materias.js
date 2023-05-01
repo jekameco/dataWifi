@@ -8,15 +8,12 @@ $(document).ready(function () {
     /** edit */
     $(document).off('click','.update_button');
     $(document).on('click','.update_button',function(){
-        alert('update');
         let id_update = $(this).attr('id_update')
         urlAction = form.attr('type_form','update'),
     
         path = "materia/getData";
 
-        $(".id_update").val(id_update)
-        console.log(urlAction);
-        console.log(id_update);
+        $(".id_update").val(id_update);
 
         $.ajax({
             type: "POST",
@@ -30,14 +27,11 @@ $(document).ready(function () {
                 response = datas.response,
                 dataRow = datas.dataRow,
                 info = datas.info;
-                alert('zzz');
 
                 if(data.response == 'success'){
-                    console.log(data);  
 
                     $.each(dataRow, function(name, value) {
                         name = name.toLowerCase();
-                        console.log(name);
                         $("#materias_"+name).val(value);
                       });
                     
@@ -57,7 +51,6 @@ $(document).ready(function () {
     /** delete */
     $(document).off('click','.delete_button');
     $(document).on('click','.delete_button',function(){
-        alert('del');
         let id_delete = $(this).attr('id_delete'),
         path = "materia/delete";
         
@@ -100,10 +93,6 @@ $(document).ready(function () {
         let formData = formSubmit.serializeArray(),
         path = "materia/"+urlAction;
 
-
-
-
-        console.log(urlAction);
 
         $.ajax({
             type: "POST",

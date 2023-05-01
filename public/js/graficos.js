@@ -131,8 +131,7 @@ $(document).ready(function () {
                 name: value.NombreMateria,
                 y: promedioMateriaInt
               }
-              console.log(value.NombreMateria);
-              console.log(promedioMateriaInt);
+              
               promedioMateria.push(contenidoMaterias);
     
             });
@@ -144,8 +143,7 @@ $(document).ready(function () {
                 name: value.nombreestudiante,
                 y: promedioEstudianteInt
               }
-              console.log(value.nombreestudiante);
-              console.log(promedioEstudianteInt);
+
               promedioEstudiante.push(contenidoEstudiantes);
             });
             graficoBarras(promedioEstudiante); 
@@ -159,67 +157,8 @@ $(document).ready(function () {
     
     $(document).off('change','.dateForGrafics');
     $(document).on('change','.dateForGrafics',function(){
-      alert('cambioo');
       evenAjaxGrafics();
     });
     
-  /*data: [
-    {
-      name: 'Chrome',
-      y: 61.04,
-      drilldown: 'Chrome'
-    },*/
-  /** obtain data ini ajax */
-
-
-
-
-  // Create the chart
-
-
-  
-  
-
-  /* let form = $("#form_grafico");
-   form.submit(function (e) {
-     e.preventDefault();
- 
-     
-    let formSubmit = $(this),
-    urlAction = formSubmit.attr('type_form'),
-    idUpdate = formSubmit.attr('idUpdate');
-     let formData = formSubmit.serializeArray(),
-     path = "graficos/info";
- 
- 
- 
- 
-     $.ajax({
-         type: "POST",
-         url: path,
-         data: formData,
-         beforeSend: function(){
-           alert('jaja');
-         },
-         success: function (data) {
-           alert('jaj2a');
-             let datas = data,
-             response = datas.response,
-             info = datas.info;
-             if(data.response == 'success'){
-                 
-                 $('.comments').load(window.location + ' .comments >  *');
-                 divInfo.show();
-                 divInfo.attr('class','alert alert-success');
-                 divInfo.text(info); 
-             }
-             clean_form(form);
-             setTimeout(function(e){
-                 divInfo.hide();
-                 $(".id_update").val('');
-             },2000);
-         }
-     });
- });*/
 
 });
