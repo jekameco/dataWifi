@@ -1,0 +1,79 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	<title>Listado de Calificaciones</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+
+
+			{{ form_start(form_grafico, {'attr': {'id': 'form_grafico'}}) }}
+			<div class="form-group col-lg-4">
+
+				{{ form_row(form_grafico.date_start) }}
+			</div>
+			<div class="form-group col-lg-4">
+				{{ form_row(form_grafico.date_end) }}
+			</div>
+			<div class="form-group col-lg-4">
+				{{ form_widget(form_grafico.submit) }}
+			</div>
+			{{ form_end(form_grafico) }} 
+    </div>
+	<div class="col-md-6">
+		<figure class="highcharts-figure">
+			<div id="container2"></div>
+			<p class="highcharts-description">
+				Pie chart where the individual slices can be clicked to expose more
+							detailed data.
+			</p>
+		</figure>
+	</div>
+			<div class="col-md-6">
+				<figure class="highcharts-figure">
+					<div id="container1"></div>
+					<p class="highcharts-description">
+						Pie chart where the individual slices can be clicked to expose more
+						            detailed data.
+					</p>
+				</figure>
+			</div>
+
+			<h1 class="sub-header">Lista de estudiantes</h1>
+			<div class="table-responsive ">
+		
+				<table class="table table-striped">
+						<tr>
+							<th>Fecha de registro</th>
+							<th>NombreEstudiante</th>
+							<th>NombreMateria</th>
+							<th>CalificacionFinal</th>
+		
+						</tr>
+					</thead>
+					<tbody class="comments">
+						{% for calificacion in listCalificaciones %}
+						<tr class="jenny"{% if calificacion.CalificacionFinal < 5 %}style="background-color: #ff00003d;"{% endif %}>
+							<td> {{ calificacion.FechaRegistro| date('Y-m-d') }} </td>
+							<td> {{ calificacion.NombreEstudiante }} </td>
+							<td> {{ calificacion.NombreMateria }} </td>
+							<td> {{ calificacion.CalificacionFinal }} </td>
+							
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			
+
+		
+
+	</div>
+
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/graficos.js') }}"></script>
+
+{% endblock %}

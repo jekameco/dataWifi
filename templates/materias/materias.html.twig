@@ -9,11 +9,13 @@
         <h1 class="sub-header">Lista de materias</h1>
 
  
-        {{ form_start(form_materias, {'attr': {'id': 'form_materias'}}) }}
+        {{ form_start(form_materias, {'attr': {'id': 'form_materias', 'type_form': 'create'}}) }}
+        {{ form_row(form_materias.id_update) }}
         <div class="form-group col-lg-4">
 
             {{ form_row(form_materias.nombremateria) }}
         </div>
+        <br>
         <div class="form-group col-lg-4">
             {{ form_widget(form_materias.submit) }}
         </div>
@@ -36,8 +38,8 @@
                 {% for materia in listMaterias %}
                 <tr>
                     <td> {{ materia.nombremateria }} </td>
-                    <td> <a href="#" class="btn btn-primary">modificar</a><a href="#"
-                            class="btn btn-danger">Eliminar</a> </td>
+                    <td> <button type="button" class="btn btn-primary update_button" id_update="{{materia.idMateria }}">Modificar</button>
+                        <button type="button" class="btn btn-danger delete_button" id_delete="{{materia.idMateria }}">Eliminar</button></td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -8,7 +8,8 @@
     <div class="row">
         <h1 class="sub-header">Lista de Calificaciones</h1>
 
-        {{ form_start( form_calificacion,{'attr':{'id':'form_calificacion'}} ) }}
+        {{ form_start( form_calificacion,{'attr':{'id':'form_calificacion', 'type_form': 'create'}} ) }}
+        {{ form_row(form_calificacion.id_update) }}
         <div class="form-group col-lg-4">
             {{ form_row(form_calificacion.NombreEstudiante) }}
         </div>
@@ -39,13 +40,13 @@
             </thead>
             <tbody class="comments">
                 {% for calificacion in listCalificaciones %}
-                <tr>
+                <tr class="jenny"{% if calificacion.CalificacionFinal < 5 %}style="background-color: #ff00003d;"{% endif %}>
                     <td> {{ calificacion.FechaRegistro| date('Y-m-d') }} </td>
                     <td> {{ calificacion.NombreEstudiante }} </td>
                     <td> {{ calificacion.NombreMateria }} </td>
                     <td> {{ calificacion.CalificacionFinal }} </td>
-                    <td> <a href="#" class="btn btn-primary">modificar</a><a href="#"
-                            class="btn btn-danger">Eliminar</a> </td>
+                    <td> <button type="button" class="btn btn-primary update_button" id_update="{{calificacion.idCalificaciones }}">Modificar</button>
+                        <button type="button" class="btn btn-danger delete_button" id_delete="{{calificacion.idCalificaciones }}">Eliminar</button> </td>
                 </tr>
                 {% endfor %}
             </tbody>

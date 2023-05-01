@@ -7,6 +7,19 @@ createStudents:
   path: /estudiante/create
   controller: App\Controller\EstudiantesController::createStudent
 
+getDataStudent:
+  path: /estudiante/getData
+  controller: App\Controller\EstudiantesController::getDataStudent
+
+updateStudent:
+  path: /estudiante/update
+  controller: App\Controller\EstudiantesController::updateStudent
+
+deleteStudent:
+  path: /estudiante/delete
+  controller: App\Controller\EstudiantesController::deleteStudent
+
+
 #rutas materias
 getMaterias:
   path: /materias
@@ -16,11 +29,49 @@ createMaterias:
   path: /materia/create
   controller: App\Controller\MateriasController::createMaterias
 
+getDataMateria:
+  path: /materia/getData
+  controller: App\Controller\MateriasController::getDataMateria
+
+updateMateria:
+  path: /estudiante/update
+  controller: App\Controller\MateriasController::updateMateria
+
+deleteMateria:
+  path: /estudiante/delete
+  controller: App\Controller\MateriasController::deleteMateria
+
 #rutas calificaciones
 getCalificaciones:
   path: /calificaciones
-  controller: App\Controller\EstudiantesController::getCalificaciones
+  controller: App\Controller\CalificacionesController::getCalificaciones
 
 createCalificacion:
   path: /calificacion/create
-  controller: App\Controller\EstudiantesController::createCalificacion
+  controller: App\Controller\CalificacionesController::createCalificacion
+
+getDataCalificaciones:
+  path: /calificacion/getData
+  controller: App\Controller\CalificacionesController::getDataCalificaciones
+
+updateCalificaciones:
+  path: /calificacion/update
+  controller: App\Controller\CalificacionesController::updateCalificaciones
+
+deleteCalificaciones:
+  path: /calificacion/delete
+  controller: App\Controller\CalificacionesController::deleteCalificaciones
+  
+#rutas graficos
+getGraficos:
+  path: /graficos
+  controller: App\Controller\EstudiantesController::getGraficos
+
+getInfoGraficos:
+  path: /graficos/info
+  controller: App\Controller\EstudiantesController::getInfoGraficos
+
+#ruta divisa
+getDivisa:
+  path: /divisa
+  controller: App\Controller\DivisasController::getDivisa
